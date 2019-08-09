@@ -20,6 +20,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -277,6 +278,11 @@ public class MainActivity extends AppCompatActivity implements
             });
         }
 
+        @Override
+        public void onPreviewFrame(byte[] data, Camera camera) {
+            super.onPreviewFrame(data, camera);
+            Log.e("###", "onPreviewFrame");
+        }
     };
 
     public static class ConfirmationDialogFragment extends DialogFragment {
