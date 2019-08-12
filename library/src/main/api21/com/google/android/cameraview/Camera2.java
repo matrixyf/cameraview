@@ -219,6 +219,11 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
+    void setOneShotPreview() throws IllegalAccessException {
+        throw new IllegalAccessException("should not setOneShotPreview in Camera2");
+    }
+
+    @Override
     void stop() {
         if (mCaptureSession != null) {
             mCaptureSession.close();

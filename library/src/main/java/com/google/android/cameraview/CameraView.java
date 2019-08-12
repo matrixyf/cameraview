@@ -253,6 +253,15 @@ public class CameraView extends FrameLayout {
         }
     }
 
+
+    public void setOneShotPreview() {
+        try {
+            mImpl.setOneShotPreview();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Stop camera preview and close the device. This is typically called from
      * {@link Activity#onPause()}.

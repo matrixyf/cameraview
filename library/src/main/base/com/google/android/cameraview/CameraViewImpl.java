@@ -41,6 +41,8 @@ abstract class CameraViewImpl {
      */
     abstract boolean start();
 
+    abstract void setOneShotPreview() throws IllegalAccessException;
+
     abstract void stop();
 
     abstract boolean isCameraOpened();
