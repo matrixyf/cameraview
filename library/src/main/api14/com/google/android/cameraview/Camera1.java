@@ -92,7 +92,6 @@ class Camera1 extends CameraViewImpl {
             setUpPreview();
         }
         mShowingPreview = true;
-        setPictureSize();
         mCamera.startPreview();
         return true;
     }
@@ -369,7 +368,8 @@ class Camera1 extends CameraViewImpl {
             mCamera.stopPreview();
         }
         mCameraParameters.setPreviewSize(size.getWidth(), size.getHeight());
-        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
+//        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
+        setPictureSize();
         mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
         setAutoFocusInternal(mAutoFocus);
         setFlashInternal(mFlash);
