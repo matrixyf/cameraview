@@ -92,8 +92,42 @@ class Camera1 extends CameraViewImpl {
             setUpPreview();
         }
         mShowingPreview = true;
+        setPictureSize();
         mCamera.startPreview();
         return true;
+    }
+
+    private void setPictureSize() {
+        try {
+            Camera.Parameters params = mCamera.getParameters();
+            List<Camera.Size> supportedPictureSizes = params.getSupportedPictureSizes();
+            Camera.Size optimalPictureSize = getLargestPictureSize(supportedPictureSizes);
+            params.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
+            mCamera.setParameters(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static Camera.Size getLargestPictureSize(List<Camera.Size> sizes) {
+        Camera.Size result=null;
+
+        for (Camera.Size size : sizes) {
+            if (result == null) {
+                result=size;
+            }
+            else {
+                int resultArea=result.width * result.height;
+                int newArea=size.width * size.height;
+
+                if (newArea > resultArea) {
+                    result=size;
+                }
+            }
+        }
+
+        return(result);
     }
 
     @Override
