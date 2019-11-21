@@ -17,10 +17,12 @@
 package com.google.android.cameraview;
 
 import android.annotation.SuppressLint;
+import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.support.v4.util.SparseArrayCompat;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import java.io.IOException;
@@ -96,17 +98,16 @@ class Camera1 extends CameraViewImpl {
         return true;
     }
 
-    private void setPictureSize() {
+    private Camera.Size getOptimalPictureSize() {
         try {
             Camera.Parameters params = mCamera.getParameters();
             List<Camera.Size> supportedPictureSizes = params.getSupportedPictureSizes();
             Camera.Size optimalPictureSize = getLargestPictureSize(supportedPictureSizes);
-            params.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
-            mCamera.setParameters(params);
+            return optimalPictureSize;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-
     }
 
     private static Camera.Size getLargestPictureSize(List<Camera.Size> sizes) {
@@ -363,13 +364,16 @@ class Camera1 extends CameraViewImpl {
 
         // Always re-apply camera parameters
         // Largest picture size in this ratio
-        final Size pictureSize = mPictureSizes.sizes(mAspectRatio).last();
+//        final Size pictureSize = mPictureSizes.sizes(mAspectRatio).last();
         if (mShowingPreview) {
             mCamera.stopPreview();
         }
         mCameraParameters.setPreviewSize(size.getWidth(), size.getHeight());
-//        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
-        setPictureSize();
+        Camera.Size optimalPictureSize = getOptimalPictureSize();
+        if (optimalPictureSize != null) {
+            mCameraParameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
+            mCameraParameters.setPictureFormat(PixelFormat.JPEG);
+        }
         mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
         setAutoFocusInternal(mAutoFocus);
         setFlashInternal(mFlash);
