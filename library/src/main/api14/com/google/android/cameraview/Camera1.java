@@ -261,17 +261,9 @@ class Camera1 extends CameraViewImpl {
             mCamera.autoFocus(new Camera.AutoFocusCallback() {
                 @Override
                 public void onAutoFocus(boolean success, Camera camera) {
-
+                    takePictureInternal();
                 }
             });
-            new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        takePictureInternal();
-                    }
-                }, 1000
-            );
         } else {
             takePictureInternal();
         }
