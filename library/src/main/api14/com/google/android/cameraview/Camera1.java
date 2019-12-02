@@ -17,6 +17,7 @@
 package com.google.android.cameraview;
 
 import android.annotation.SuppressLint;
+import android.graphics.ImageFormat;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -364,7 +365,7 @@ class Camera1 extends CameraViewImpl {
         Camera.Size optimalPictureSize = getOptimalPictureSize();
         if (optimalPictureSize != null) {
             mCameraParameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
-            mCameraParameters.setPictureFormat(PixelFormat.JPEG);
+            mCameraParameters.setPictureFormat(ImageFormat.NV21);
         }
         mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
         setAutoFocusInternal(mAutoFocus);
