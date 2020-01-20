@@ -72,7 +72,7 @@ abstract class CameraViewImpl {
 
     abstract void setDisplayOrientation(int displayOrientation);
 
-    abstract void setExposureCompensation(int level)
+    abstract void setExposureCompensation(int level);
 
     interface Callback {
 
