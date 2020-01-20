@@ -412,6 +412,14 @@ public class CameraView extends FrameLayout {
         mImpl.setExposureCompensation(level);
     }
 
+    public int getMinExposureCompensation() {
+        return mImpl.getMinExposureCompensation();
+    }
+
+    public int getMaxExposureCompensation() {
+        return mImpl.getMaxExposureCompensation();
+    }
+
     /**
      * Take a picture. The result will be returned to
      * {@link Callback#onPictureTaken(CameraView, byte[])}.
