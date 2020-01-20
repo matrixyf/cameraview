@@ -74,6 +74,10 @@ abstract class CameraViewImpl {
 
     abstract void setExposureCompensation(int level);
 
+    abstract int getMinExposureCompensation();
+
+    abstract int getMaxExposureCompensation();
+
     interface Callback {
 
         void onCameraOpened();

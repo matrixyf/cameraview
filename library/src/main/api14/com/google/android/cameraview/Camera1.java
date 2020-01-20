@@ -307,6 +307,22 @@ class Camera1 extends CameraViewImpl {
         }
     }
 
+    @Override
+    int getMaxExposureCompensation() {
+        if (mCameraParameters != null) {
+            return mCameraParameters.getMaxExposureCompensation();
+        }
+        return 0;
+    }
+
+    @Override
+    int getMinExposureCompensation() {
+        if (mCameraParameters != null) {
+            return mCameraParameters.getMinExposureCompensation();
+        }
+        return 0;
+    }
+
     /**
      * This rewrites {@link #mCameraId} and {@link #mCameraInfo}.
      */

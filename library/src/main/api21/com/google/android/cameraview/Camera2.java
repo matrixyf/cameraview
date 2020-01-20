@@ -352,6 +352,16 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
+    int getMaxExposureCompensation() {
+        return 0;
+    }
+
+    @Override
+    int getMinExposureCompensation() {
+        return 0;
+    }
+
+    @Override
     void setDisplayOrientation(int displayOrientation) {
         mDisplayOrientation = displayOrientation;
         mPreview.setDisplayOrientation(mDisplayOrientation);
