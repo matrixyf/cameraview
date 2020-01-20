@@ -391,7 +391,7 @@ class Camera1 extends CameraViewImpl {
         Camera.Size optimalPictureSize = getOptimalPictureSize();
         if (optimalPictureSize != null) {
             mCameraParameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
-            mCameraParameters.setPictureFormat(ImageFormat.NV21);
+            mCameraParameters.setPictureFormat(ImageFormat.JPEG);
         }
         mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
         setAutoFocusInternal(mAutoFocus);
