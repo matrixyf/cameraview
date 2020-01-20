@@ -297,6 +297,16 @@ class Camera1 extends CameraViewImpl {
         }
     }
 
+    @Override
+    void setExposureCompensation(int level) {
+        if (mCameraParameters != null) {
+            mCameraParameters.setExposureCompensation(level);
+            if (mCamera != null) {
+                mCamera.setParameters(mCameraParameters);
+            }
+        }
+    }
+
     /**
      * This rewrites {@link #mCameraId} and {@link #mCameraInfo}.
      */
@@ -374,6 +384,11 @@ class Camera1 extends CameraViewImpl {
         if (mShowingPreview) {
             mCamera.startPreview();
         }
+        Log.d("###", "getAutoExposureLock = " + mCameraParameters.getAutoExposureLock()
+            + ", getExposureCompensation = " + mCameraParameters.getExposureCompensation()
+                + ", getMinExposureCompensation = " + mCameraParameters.getMinExposureCompensation()
+                +  ", getMaxExposureCompensation = " + mCameraParameters.getMaxExposureCompensation()
+        );
     }
 
     @SuppressWarnings("SuspiciousNameCombination")

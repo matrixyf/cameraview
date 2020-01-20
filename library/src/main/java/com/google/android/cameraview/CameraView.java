@@ -408,6 +408,10 @@ public class CameraView extends FrameLayout {
         return mImpl.getFlash();
     }
 
+    public void setExposureCompensation(int level) {
+        mImpl.setExposureCompensation(level);
+    }
+
     /**
      * Take a picture. The result will be returned to
      * {@link Callback#onPictureTaken(CameraView, byte[])}.
